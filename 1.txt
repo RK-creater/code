@@ -1,0 +1,43 @@
+graph = {'A': ['B','C'],
+        'B':['D','A'],
+        'C':['E','A'],
+        'D':['B'],
+        'E':['C']}
+
+from collections import deque
+
+def BFS(node, graph):
+    q = deque()
+    visited = set()
+    visited.add(node)
+    q.append(node)
+    
+    while q:
+        current = q.popleft()
+        print(current, end=' ')
+        
+        for x in graph[current]:
+            if x not in visited:
+                q.append(x)
+                visited.add(x)
+        
+
+    
+BFS('D', graph)
+
+def DFS(node, graph):
+    visited = set()
+    s = []
+    s.append(node)
+    
+    while s:
+        current = s.pop()
+        
+        if current not in visited:
+            print(current, end=' ')
+            visited.add(current)
+        
+            for x in graph[current]:
+                s.append(x)
+        
+DFS('D', graph)
